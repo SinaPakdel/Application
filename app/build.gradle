@@ -55,7 +55,7 @@ dependencies {
     def retrofitVersion = "2.9.0"
     def hiltVersion = "2.44"
     def OkhttpVersion = "4.10.0"
-    def dataStoreVersion = "1.1.0-alpha03"
+    def dataStoreVersion = "1.0.0-alpha02"
     def lifecycleVersion = "2.6.1"
     def imageLoadingVersion = "2.2.2"
     def glideVersion = "4.15.1"

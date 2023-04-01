@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tasksFragment">
+
+    <fragment
+        android:id="@+id/tasksFragment"
+        android:name="com.example.application.ui.fragments.TasksFragment"
+        android:label="Tasks"
+        tools:layout="@layout/fragment_tasks">
+        <action
+            android:id="@+id/action_tasksFragment_to_addFragment"
+            app:destination="@id/addFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.application.ui.fragments.AddTaskFragment"
+        android:label="{title}"
+        tools:layout="@layout/fragment_add">
+        <argument
+            android:name="task"
+            android:defaultValue="@null"
+            app:argType="com.example.application.data.Task"
+            app:nullable="true" />
+        <argument
+            android:name="title"
+            app:argType="string" />
+    </fragment>
+    <dialog
+        android:id="@+id/deleteAllCompletedDialog"
+        android:name="com.example.application.ui.deleteDialog.DeleteAllCompletedDialog"
+        android:label="DeleteAllCompletedDialog" />
+    <action
+        android:id="@+id/action_global_deleteAllCompletedDialog"
+        app:destination="@id/deleteAllCompletedDialog" />
+</navigation>
