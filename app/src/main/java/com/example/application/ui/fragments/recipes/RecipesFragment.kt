@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.application.R
 import com.example.application.databinding.FragmentRecipesBinding
@@ -27,6 +28,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     private val mainViewModel: MainViewModel by viewModels()
     private val recipesViewModel: RecipesViewModel by viewModels()
 
+    private val args by navArgs<RecipesFragmentArgs>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -54,7 +56,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     private fun readDatabase() {
         mainViewModel.getRecipe()
         mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) {
-            if (it.toMutableList().isNotEmpty()) {
+            if (it.toMutableList().isNotEmpty() && !args.backFromBTS) {
                 recipesAdapter.setData(it[0].foodRecipes);hideShimmerEffect()
             } else requestApiData()
         }
