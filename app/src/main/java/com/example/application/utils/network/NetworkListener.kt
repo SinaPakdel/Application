@@ -4,11 +4,13 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.Network
 import android.net.NetworkCapabilities
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
+import javax.inject.Inject
 
-class NetworkListener : ConnectivityManager.NetworkCallback() {
+class NetworkListener @Inject constructor(@ApplicationContext private val context: Context) : ConnectivityManager.NetworkCallback() {
     private val isNetworkAvailable = MutableStateFlow(false)
-    fun checkNetworkAvailability(context: Context): MutableStateFlow<Boolean> {
+    fun checkNetworkAvailability(): MutableStateFlow<Boolean> {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         connectivityManager.registerDefaultNetworkCallback(this)
         var isConnected = false
