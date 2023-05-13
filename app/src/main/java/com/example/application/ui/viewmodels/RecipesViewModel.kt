@@ -4,6 +4,9 @@ import android.app.Application
 import androidx.lifecycle.ViewModel
 import com.example.application.utils.consts.Constants
 import com.example.application.utils.consts.Constants.Companion.API_KEY_VALUE
+import com.example.application.utils.consts.Constants.Companion.DEFAULT_DIET_TYPE
+import com.example.application.utils.consts.Constants.Companion.DEFAULT_MEAL_TYPE
+import com.example.application.utils.consts.Constants.Companion.DEFAULT_RECIPES_NUMBER
 import com.example.application.utils.consts.Constants.Companion.QUERY_ADD_RECIPE_INFORMATION
 import com.example.application.utils.consts.Constants.Companion.QUERY_DIET
 import com.example.application.utils.consts.Constants.Companion.QUERY_FILL_INGREDIENTS
@@ -16,10 +19,10 @@ import javax.inject.Inject
 class RecipesViewModel @Inject constructor(application: Application) : ViewModel() {
 
     fun applyQueries() = hashMapOf<String, String>().apply {
-        put(QUERY_NUM, "50")
+        put(QUERY_NUM, DEFAULT_RECIPES_NUMBER)
         put(API_KEY_VALUE, Constants.API_KEY)
-        put(QUERY_TYPE, "snack")
-        put(QUERY_DIET, "vegan")
+        put(QUERY_TYPE, DEFAULT_MEAL_TYPE)
+        put(QUERY_DIET, DEFAULT_DIET_TYPE)
         put(QUERY_ADD_RECIPE_INFORMATION, "true")
         put(QUERY_FILL_INGREDIENTS, "true")
     }
