@@ -1,6 +1,7 @@
 package com.example.application.ui.viewmodels
 
 import android.app.Application
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.application.data.local.datastore.DataStoreRepository
@@ -21,10 +22,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
+    private val application: Application,
     private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
     private var mealType = DEFAULT_MEAL_TYPE
     private var dietType = DEFAULT_DIET_TYPE
+
+    var networkStatus = false
 
     val readMealAndDietType = dataStoreRepository.readMealAndDietType
     fun saveMealAndDietType(
@@ -49,5 +53,11 @@ class RecipesViewModel @Inject constructor(
         put(QUERY_DIET, dietType)
         put(QUERY_ADD_RECIPE_INFORMATION, "true")
         put(QUERY_FILL_INGREDIENTS, "true")
+    }
+
+    fun showNetworkStatus() {
+        if (!networkStatus) {
+            Toast.makeText(application, "", Toast.LENGTH_SHORT).show()
+        }
     }
 }

@@ -52,8 +52,10 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         setupRecyclerView()
         readDatabase()
         lifecycleScope.launch {
-            networkListener.checkNetworkAvailability().collectLatest {status->
-                Log.e("TAG", "onViewCreated: $status", )
+            networkListener.checkNetworkAvailability().collectLatest { status ->
+                recipesViewModel.networkStatus = status
+                recipesViewModel.showNetworkStatus()
+                Log.e("TAG", "onViewCreated: $status")
             }
         }
 
