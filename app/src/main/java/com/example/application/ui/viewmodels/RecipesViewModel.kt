@@ -15,12 +15,12 @@ import com.example.application.utils.consts.Constants.Companion.QUERY_FILL_INGRE
 import com.example.application.utils.consts.Constants.Companion.QUERY_NUM
 import com.example.application.utils.consts.Constants.Companion.QUERY_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RecipesViewModel @Inject constructor(
-    application: Application,
     private val dataStoreRepository: DataStoreRepository
 ) : ViewModel() {
     private var mealType = DEFAULT_MEAL_TYPE
