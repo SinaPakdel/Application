@@ -1,6 +1,7 @@
 package com.example.application.ui.fragments.recipes
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,10 +16,13 @@ import com.example.application.databinding.FragmentRecipesBinding
 import com.example.application.ui.adapter.RecipesAdapter
 import com.example.application.ui.viewmodels.MainViewModel
 import com.example.application.ui.viewmodels.RecipesViewModel
+import com.example.application.utils.network.NetworkListener
 import com.example.application.utils.observeOnce
 import com.example.application.utils.safeapi.NetworkResult
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RecipesFragment : Fragment(R.layout.fragment_recipes) {
@@ -29,6 +33,9 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     private val recipesViewModel: RecipesViewModel by viewModels()
 
     private val args by navArgs<RecipesFragmentArgs>()
+
+    @Inject
+    lateinit var networkListener: NetworkListener
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -44,6 +51,13 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         readDatabase()
+        lifecycleScope.launch {
+            networkListener.checkNetworkAvailability().collectLatest {status->
+                Log.e("TAG", "onViewCreated: $status", )
+            }
+        }
+
+
         with(binding) {
             floatingActionButton.setOnClickListener {
                 findNavController().navigate(
