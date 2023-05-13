@@ -68,6 +68,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
             when (response) {
                 is NetworkResult.Error -> {
                     hideShimmerEffect()
+                    // TODO: toast network error
                     loadDataFromCach()
                 }
 
