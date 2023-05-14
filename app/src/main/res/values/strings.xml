@@ -34,4 +34,9 @@
     <string name="whole30">Whole30</string>
     <string name="apply">Apply</string>
     <string name="search">search</string>
+    <string name="food_title_overview">Food Title Overview</string>
+    <string name="healthy">Healthy</string>
+    <string name="summary">summary</string>
+    <string name="dairy_free">Dairy Free</string>
+    <string name="cheap">Cheap</string>
 </resources>

@@ -19,7 +19,7 @@
         android:id="@+id/recipesBottomSheet"
         android:name="com.example.application.ui.main.fragments.recipes.bottomsheet.RecipesBottomSheet"
         android:label="recipes_bottom_sheet"
-        tools:layout="@layout/recipes_bottom_sheet" >
+        tools:layout="@layout/recipes_bottom_sheet">
         <action
             android:id="@+id/action_recipesBottomSheet_to_recipesFragment"
             app:destination="@id/recipesFragment" />
@@ -27,14 +27,15 @@
     <fragment
         android:id="@+id/recipesFragment"
         android:name="com.example.application.ui.main.fragments.recipes.RecipesFragment"
-        android:label="RecipesFragment" >
+        android:label="RecipesFragment"
+        tools:layout="@layout/fragment_recipes">
         <action
             android:id="@+id/action_recipesFragment_to_recipesBottomSheet"
             app:destination="@id/recipesBottomSheet" />
         <argument
             android:name="backFromBTS"
-            app:argType="boolean"
-            android:defaultValue="false" />
+            android:defaultValue="false"
+            app:argType="boolean" />
         <action
             android:id="@+id/action_recipesFragment_to_detailsActivity"
             app:destination="@id/detailsActivity" />
@@ -43,7 +44,7 @@
         android:id="@+id/detailsActivity"
         android:name="com.example.application.ui.details.DetailsActivity"
         android:label="activity_details"
-        tools:layout="@layout/activity_details" >
+        tools:layout="@layout/activity_details">
         <argument
             android:name="result"
             app:argType="com.example.application.data.models.FoodResult" />
