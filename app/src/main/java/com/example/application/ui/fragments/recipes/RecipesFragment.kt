@@ -50,12 +50,16 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        readDatabase()
+
+        recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
+            recipesViewModel.backOnline = it
+        }
+
         lifecycleScope.launch {
             networkListener.checkNetworkAvailability().collectLatest { status ->
                 recipesViewModel.networkStatus = status
                 recipesViewModel.showNetworkStatus()
-                Log.e("TAG", "onViewCreated: $status")
+                readDatabase()
             }
         }
 

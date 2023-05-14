@@ -3,6 +3,7 @@ package com.example.application.ui.viewmodels
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.application.data.local.datastore.DataStoreRepository
 import com.example.application.utils.consts.Constants
@@ -17,6 +18,7 @@ import com.example.application.utils.consts.Constants.Companion.QUERY_NUM
 import com.example.application.utils.consts.Constants.Companion.QUERY_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,8 +31,10 @@ class RecipesViewModel @Inject constructor(
     private var dietType = DEFAULT_DIET_TYPE
 
     var networkStatus = false
+    var backOnline = false
 
     val readMealAndDietType = dataStoreRepository.readMealAndDietType
+    val readBackOnline = dataStoreRepository.readBackOnline.asLiveData()
     fun saveMealAndDietType(
         mealType: String,
         mealTypeInt: Int,
@@ -39,6 +43,8 @@ class RecipesViewModel @Inject constructor(
     ) = viewModelScope.launch {
         dataStoreRepository.saveMealAndDietType(mealType, mealTypeInt, dietType, dietTypeInt)
     }
+
+    fun saveBackOnline(backOnline: Boolean) = viewModelScope.launch(Dispatchers.IO) { dataStoreRepository.saveBackOnline(backOnline) }
 
     fun applyQueries() = hashMapOf<String, String>().apply {
         viewModelScope.launch {
@@ -56,6 +62,14 @@ class RecipesViewModel @Inject constructor(
     }
 
     fun showNetworkStatus() {
-        if (!networkStatus) Toast.makeText(application, "", Toast.LENGTH_SHORT).show()
+        if (!networkStatus) {
+            Toast.makeText(application, "No Internet conection", Toast.LENGTH_SHORT).show()
+            saveBackOnline(true)
+        }else if (networkStatus) {
+            if (backOnline) {
+                Toast.makeText(application, "We'r back online", Toast.LENGTH_SHORT).show()
+                saveBackOnline(false)
+            }
+        }
     }
 }
