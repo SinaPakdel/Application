@@ -7,13 +7,13 @@
 
         <variable
             name="mainViewModel"
-            type="com.example.application.ui.viewmodels.MainViewModel" />
+            type="com.example.application.ui.main.viewmodels.MainViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.fragments.recipes.RecipesFragment">
+        tools:context=".ui.main.fragments.recipes.RecipesFragment">
 
         <com.todkars.shimmer.ShimmerRecyclerView
             android:id="@+id/rvRecipes"
