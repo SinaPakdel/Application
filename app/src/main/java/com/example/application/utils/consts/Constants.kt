@@ -7,6 +7,7 @@ class Constants {
 
         const val API_KEY_VALUE = "apiKey"
         const val QUERY_NUM = "number"
+        const val QUERY_SEARCH = "query"
         const val QUERY_TYPE = "type"
         const val QUERY_DIET = "diet"
         const val QUERY_ADD_RECIPE_INFORMATION = "addRecipeInformation"

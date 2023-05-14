@@ -16,6 +16,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
@@ -28,7 +29,7 @@ class MainViewModel @Inject constructor(
     private val _readRecipes = MutableLiveData<List<RecipeEntity>>()
     val readRecipes: LiveData<List<RecipeEntity>> get() = _readRecipes
 
-     fun getRecipe() = viewModelScope.launch {
+    fun getRecipe() = viewModelScope.launch {
         repository.local.readDatabase().collect {
             _readRecipes.postValue(it)
         }
@@ -37,17 +38,36 @@ class MainViewModel @Inject constructor(
     private fun insertRecipes(recipeEntity: RecipeEntity) = viewModelScope.launch(Dispatchers.IO) {
         repository.local.insertRecipes(recipeEntity)
     }
+
     /** RETROFIT */
     var recipeResponse: MutableLiveData<NetworkResult<FoodRecipes>> = MutableLiveData()
+    var searchedRecipeResponse: MutableLiveData<NetworkResult<FoodRecipes>> = MutableLiveData()
     fun getRecipes(queryMap: Map<String, String>) = viewModelScope.launch {
         getRecipesSafeCall(queryMap)
+    }
+
+    fun searchRecipes(searchQuery: Map<String, String>) =
+        viewModelScope.launch { searchRecipeSafeCall(searchQuery) }
+
+    private suspend fun searchRecipeSafeCall(searchQuery: Map<String, String>) {
+        searchedRecipeResponse.value = NetworkResult.Loading()
+        if (hasInternetConnection()) {
+            try {
+                val response = repository.remote.searchRecipes(searchQuery)
+                searchedRecipeResponse.value = handleFoodRecipesResponse(response)
+            } catch (e: Exception) {
+                searchedRecipeResponse.value = NetworkResult.Error("Recipes Not Found.")
+            }
+        } else {
+            searchedRecipeResponse.value = NetworkResult.Error("No Internet Connection.")
+        }
+
     }
 
     private suspend fun getRecipesSafeCall(queryMap: Map<String, String>) {
         recipeResponse.value = NetworkResult.Loading()
         if (hasInternetConnection()) {
             try {
-
                 val response = repository.remote.getRecipes(queryMap)
                 recipeResponse.value = handleFoodRecipesResponse(response)
                 val foodRecipes = recipeResponse.value!!.data

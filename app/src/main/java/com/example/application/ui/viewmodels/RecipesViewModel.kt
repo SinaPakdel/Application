@@ -1,6 +1,7 @@
 package com.example.application.ui.viewmodels
 
 import android.app.Application
+import android.app.DownloadManager.Query
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -15,6 +16,7 @@ import com.example.application.utils.consts.Constants.Companion.QUERY_ADD_RECIPE
 import com.example.application.utils.consts.Constants.Companion.QUERY_DIET
 import com.example.application.utils.consts.Constants.Companion.QUERY_FILL_INGREDIENTS
 import com.example.application.utils.consts.Constants.Companion.QUERY_NUM
+import com.example.application.utils.consts.Constants.Companion.QUERY_SEARCH
 import com.example.application.utils.consts.Constants.Companion.QUERY_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -44,7 +46,8 @@ class RecipesViewModel @Inject constructor(
         dataStoreRepository.saveMealAndDietType(mealType, mealTypeInt, dietType, dietTypeInt)
     }
 
-    fun saveBackOnline(backOnline: Boolean) = viewModelScope.launch(Dispatchers.IO) { dataStoreRepository.saveBackOnline(backOnline) }
+    fun saveBackOnline(backOnline: Boolean) =
+        viewModelScope.launch(Dispatchers.IO) { dataStoreRepository.saveBackOnline(backOnline) }
 
     fun applyQueries() = hashMapOf<String, String>().apply {
         viewModelScope.launch {
@@ -61,11 +64,20 @@ class RecipesViewModel @Inject constructor(
         put(QUERY_FILL_INGREDIENTS, "true")
     }
 
+
+    fun applySearchQuery(searchQuery: String) = hashMapOf<String, String>().apply {
+        put(QUERY_SEARCH, searchQuery)
+        put(QUERY_NUM, DEFAULT_RECIPES_NUMBER)
+        put(API_KEY_VALUE, Constants.API_KEY)
+        put(QUERY_ADD_RECIPE_INFORMATION, "true")
+        put(QUERY_FILL_INGREDIENTS, "true")
+    }
+
     fun showNetworkStatus() {
         if (!networkStatus) {
             Toast.makeText(application, "No Internet conection", Toast.LENGTH_SHORT).show()
             saveBackOnline(true)
-        }else if (networkStatus) {
+        } else if (networkStatus) {
             if (backOnline) {
                 Toast.makeText(application, "We'r back online", Toast.LENGTH_SHORT).show()
                 saveBackOnline(false)

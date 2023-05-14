@@ -26,7 +26,8 @@ import com.example.application.ui.viewmodels.RecipesViewModel
 import com.example.application.utils.network.NetworkListener
 import com.example.application.utils.observeOnce
 import com.example.application.utils.safeapi.NetworkResult
-import com.example.application.utils.view.onQueryTextChanged
+import com.example.application.utils.view.makeSnack
+import com.example.application.utils.view.onQueryTextSubmit
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -80,14 +81,17 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                 else recipesViewModel.showNetworkStatus()
             }
         }
-        menuHost.addMenuProvider(object : MenuProvider{
+        menuHost.addMenuProvider(object : MenuProvider {
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
                 menuInflater.inflate(R.menu.menu_recipes, menu)
                 val searchAction = menu.findItem(action_search)
                 val searchView = searchAction.actionView as SearchView
                 searchView.isSubmitButtonEnabled = true
-                searchView.onQueryTextChanged {
-
+                searchView.onQueryTextSubmit {
+                    if (it.isNotEmpty()) {
+                        Log.e("TAG", "onCreateMenu: $it", )
+                        searchApiData(it)
+                    }
                 }
             }
 
@@ -113,8 +117,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         mainViewModel.recipeResponse.observe(viewLifecycleOwner) { response ->
             when (response) {
                 is NetworkResult.Error -> {
-                    hideShimmerEffect()
-                    // TODO: toast network error
+                    hideShimmerEffect();response.message.toString().let { makeSnack(it, binding.root) }
                     loadDataFromCach()
                 }
 
@@ -123,8 +126,28 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                 }
 
                 is NetworkResult.Success -> {
-                    hideShimmerEffect()
-                    response.data?.let { recipesAdapter.setData(it) }
+                    hideShimmerEffect();response.data?.let { recipesAdapter.setData(it) }
+                }
+            }
+        }
+    }
+
+    private fun searchApiData(searchQueue: String) {
+        showShimmerEffect()
+        mainViewModel.searchRecipes(recipesViewModel.applySearchQuery(searchQueue))
+        mainViewModel.searchedRecipeResponse.observe(viewLifecycleOwner) { response ->
+            when (response) {
+                is NetworkResult.Error -> {
+                    hideShimmerEffect();response.message.toString().let { makeSnack(it, binding.root) }
+                }
+
+                is NetworkResult.Loading -> {
+                    showShimmerEffect()
+                }
+
+                is NetworkResult.Success -> {
+                    Log.e("TAG", "searchApiData: ${response.data}", )
+                    hideShimmerEffect();response.data?.let { recipesAdapter.setData(it) }
                 }
             }
         }
