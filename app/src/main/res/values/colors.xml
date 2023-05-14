@@ -21,4 +21,5 @@
     <color name="bgChipColor">@color/lightGrey</color>
     <color name="textCheckedChipColor">@color/purple</color>
     <color name="textChipColor">@color/darkGrey</color>
+    <color name="actionBarBackgroundColor">#370098</color>
 </resources>
