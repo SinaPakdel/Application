@@ -1,6 +1,7 @@
 package com.example.application.ui.main.bindingadapter
 
 import android.annotation.SuppressLint
+import android.content.res.ColorStateList
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,6 +13,7 @@ import coil.load
 import com.example.application.R
 import com.example.application.data.models.FoodResult
 import com.example.application.ui.main.fragments.recipes.RecipesFragmentDirections
+import org.jsoup.Jsoup
 
 class ItemRecipesBinding {
     companion object {
@@ -53,16 +55,27 @@ class ItemRecipesBinding {
             texView.text = minutes.toString()
         }
 
-        @SuppressLint("ResourceAsColor")
+        @SuppressLint("ResourceAsColor", "UseCompatTextViewDrawableApis")
         @BindingAdapter("applyVeganColor")
         @JvmStatic
         fun applyVeganColor(view: TextView, vegan: Boolean) {
+            val color = view.context.getColor(R.color.green)
             if (vegan) {
                 view.apply {
-                    setTextColor(ContextCompat.getColor(view.context, R.color.green))
-//                    compoundDrawables[0].setTint(R.color.green)
+                    setTextColor(color)
+                    compoundDrawableTintList = ColorStateList.valueOf(color)
                 }
             }
         }
+
+        @BindingAdapter("parseHtml")
+        @JvmStatic
+        fun parseHtml(texView: TextView, description: String?) {
+            if (description != null) {
+                val text = Jsoup.parse(description).text()
+                texView.text = text
+            }
+        }
+
     }
 }

@@ -3,6 +3,7 @@ package com.example.application.ui.details.fragments
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,9 +14,11 @@ import com.example.application.data.models.FoodResult
 import com.example.application.databinding.FragmentOverviewBinding
 import com.example.application.databinding.FragmentRecipesBinding
 import com.example.application.utils.consts.Constants.Companion.RECIPE_BUNDLE_KEY
+import org.jsoup.Jsoup
 
 
 class OverviewFragment : Fragment() {
+    private val TAG = "OverviewFragment"
     private var _binding: FragmentOverviewBinding? = null
     private val binding get() = _binding!!
     override fun onCreateView(
@@ -39,10 +42,12 @@ class OverviewFragment : Fragment() {
                 imgOverview.load(it.image)
                 tvLikes.text = it.aggregateLikes.toString()
                 tvTime.text = it.readyInMinutes.toString()
-                tvSummary.text = it.summary
+                tvSummary.text = Jsoup.parse(it.summary).text()
 
                 if (it.vegetarian) {
-                    tvCheckVegetarian.apply {  setTextColor(color);compoundDrawableTintList = ColorStateList.valueOf(color)}
+                    tvCheckVegetarian.apply {
+                        setTextColor(color);compoundDrawableTintList = ColorStateList.valueOf(color)
+                    }
                 }
                 if (it.glutenFree) {
                     tvCheckGlutenFree.apply {
