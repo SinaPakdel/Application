@@ -8,6 +8,9 @@ import androidx.navigation.navArgs
 import com.example.application.R
 import com.example.application.databinding.ActivityDetailsBinding
 import com.example.application.ui.details.adapter.PagerAdapter
+import com.example.application.utils.consts.Constants.Companion.INGREDIENTS
+import com.example.application.utils.consts.Constants.Companion.INSTRUCTIONS
+import com.example.application.utils.consts.Constants.Companion.OVERVIEW
 import com.example.application.utils.consts.Constants.Companion.RECIPE_BUNDLE_KEY
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -16,7 +19,7 @@ class DetailsActivity : AppCompatActivity() {
     private val binding get() = _binding!!
     private lateinit var pagerAdapter: PagerAdapter
     private val args by navArgs<DetailsActivityArgs>()
-    private val list: ArrayList<String> = arrayListOf(" Todo", "Doing", "Done")
+    private val list= arrayListOf(OVERVIEW, INGREDIENTS, INSTRUCTIONS)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailsBinding.inflate(layoutInflater)
@@ -29,11 +32,6 @@ class DetailsActivity : AppCompatActivity() {
         pagerAdapter = PagerAdapter(resultBundle, supportFragmentManager, lifecycle)
         implementViewPager(binding)
 
-
-
-
-        with(binding) {
-        }
         binding.materialToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }

@@ -31,5 +31,9 @@ class Constants {
         const val PREFERENCES_NAME="food_pref"
 
         const val RECIPE_BUNDLE_KEY="recipeBundleKey"
+
+        const val OVERVIEW="OVERVIEW"
+        const val INGREDIENTS="INGREDIENTS"
+        const val INSTRUCTIONS="INSTRUCTIONS"
     }
 }
