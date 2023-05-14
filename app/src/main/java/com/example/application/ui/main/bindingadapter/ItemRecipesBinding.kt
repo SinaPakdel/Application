@@ -1,4 +1,4 @@
-package com.example.application.ui.bindingadapter
+package com.example.application.ui.main.bindingadapter
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -11,7 +11,7 @@ import androidx.navigation.findNavController
 import coil.load
 import com.example.application.R
 import com.example.application.data.models.FoodResult
-import com.example.application.ui.fragments.recipes.RecipesFragmentDirections
+import com.example.application.ui.main.fragments.recipes.RecipesFragmentDirections
 
 class ItemRecipesBinding {
     companion object {

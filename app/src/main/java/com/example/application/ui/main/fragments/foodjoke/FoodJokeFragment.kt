@@ -1,4 +1,4 @@
-package com.example.application.ui.fragments.foodjoke
+package com.example.application.ui.main.fragments.foodjoke
 
 import androidx.fragment.app.Fragment
 import com.example.application.R

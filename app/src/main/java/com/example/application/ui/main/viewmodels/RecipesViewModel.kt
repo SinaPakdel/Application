@@ -1,7 +1,6 @@
-package com.example.application.ui.viewmodels
+package com.example.application.ui.main.viewmodels
 
 import android.app.Application
-import android.app.DownloadManager.Query
 import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -19,7 +18,6 @@ import com.example.application.utils.consts.Constants.Companion.QUERY_NUM
 import com.example.application.utils.consts.Constants.Companion.QUERY_SEARCH
 import com.example.application.utils.consts.Constants.Companion.QUERY_TYPE
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject

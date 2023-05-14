@@ -1,4 +1,4 @@
-package com.example.application.ui.bindingadapter
+package com.example.application.ui.main.bindingadapter
 
 import android.view.View
 import android.widget.ImageView

@@ -1,4 +1,4 @@
-package com.example.application.ui.fragments.favorite
+package com.example.application.ui.main.fragments.favorite
 
 import androidx.fragment.app.Fragment
 import com.example.application.R

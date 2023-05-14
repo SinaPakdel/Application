@@ -1,4 +1,4 @@
-package com.example.application.ui.fragments.recipes
+package com.example.application.ui.main.fragments.recipes
 
 import android.os.Bundle
 import android.util.Log
@@ -20,9 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.application.R
 import com.example.application.R.id.action_search
 import com.example.application.databinding.FragmentRecipesBinding
-import com.example.application.ui.adapter.RecipesAdapter
-import com.example.application.ui.viewmodels.MainViewModel
-import com.example.application.ui.viewmodels.RecipesViewModel
+import com.example.application.ui.main.adapter.RecipesAdapter
+import com.example.application.ui.main.viewmodels.MainViewModel
+import com.example.application.ui.main.viewmodels.RecipesViewModel
 import com.example.application.utils.network.NetworkListener
 import com.example.application.utils.observeOnce
 import com.example.application.utils.safeapi.NetworkResult

@@ -1,4 +1,4 @@
-package com.example.application.ui.fragments.recipes.bottomsheet
+package com.example.application.ui.main.fragments.recipes.bottomsheet
 
 import android.os.Bundle
 import android.util.Log
@@ -8,11 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.asLiveData
 import androidx.navigation.fragment.findNavController
-import com.example.application.R
-import com.example.application.data.local.datastore.MealAndDietType
-import com.example.application.databinding.FragmentRecipesBinding
 import com.example.application.databinding.RecipesBottomSheetBinding
-import com.example.application.ui.viewmodels.RecipesViewModel
+import com.example.application.ui.main.viewmodels.RecipesViewModel
 import com.example.application.utils.consts.Constants.Companion.DEFAULT_DIET_TYPE
 import com.example.application.utils.consts.Constants.Companion.DEFAULT_DIET_TYPE_POSITION
 import com.example.application.utils.consts.Constants.Companion.DEFAULT_MEAL_TYPE
@@ -21,7 +18,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import dagger.hilt.android.AndroidEntryPoint
-import java.lang.Exception
 import java.util.Locale
 
 @AndroidEntryPoint

@@ -1,4 +1,4 @@
-package com.example.application.ui.viewmodels
+package com.example.application.ui.main.viewmodels
 
 import android.app.Application
 import android.content.Context
@@ -16,7 +16,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import retrofit2.Response
-import retrofit2.http.Query
 import javax.inject.Inject
 
 @HiltViewModel
