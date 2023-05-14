@@ -56,8 +56,6 @@ class RecipesViewModel @Inject constructor(
     }
 
     fun showNetworkStatus() {
-        if (!networkStatus) {
-            Toast.makeText(application, "", Toast.LENGTH_SHORT).show()
-        }
+        if (!networkStatus) Toast.makeText(application, "", Toast.LENGTH_SHORT).show()
     }
 }

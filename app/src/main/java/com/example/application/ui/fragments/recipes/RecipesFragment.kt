@@ -59,12 +59,11 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
             }
         }
 
-
         with(binding) {
             floatingActionButton.setOnClickListener {
-                findNavController().navigate(
-                    RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet()
-                )
+                if (recipesViewModel.networkStatus)
+                    findNavController().navigate(RecipesFragmentDirections.actionRecipesFragmentToRecipesBottomSheet())
+                else recipesViewModel.showNetworkStatus()
             }
         }
     }

@@ -73,7 +73,6 @@ class RecipesBottomSheet : BottomSheetDialogFragment() {
                 updateChips(it.selectedDietTypeId, dietTypeChipGroup)
             }
         }
-
     }
 
     private fun updateChips(chipId: Int, chipGroup: ChipGroup) {
