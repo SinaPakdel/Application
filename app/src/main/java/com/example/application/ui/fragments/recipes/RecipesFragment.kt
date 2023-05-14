@@ -3,8 +3,14 @@ package com.example.application.ui.fragments.recipes
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.core.view.MenuHost
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +18,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.application.R
+import com.example.application.R.id.action_search
 import com.example.application.databinding.FragmentRecipesBinding
 import com.example.application.ui.adapter.RecipesAdapter
 import com.example.application.ui.viewmodels.MainViewModel
@@ -19,6 +26,7 @@ import com.example.application.ui.viewmodels.RecipesViewModel
 import com.example.application.utils.network.NetworkListener
 import com.example.application.utils.observeOnce
 import com.example.application.utils.safeapi.NetworkResult
+import com.example.application.utils.view.onQueryTextChanged
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -33,6 +41,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     private val recipesViewModel: RecipesViewModel by viewModels()
 
     private val args by navArgs<RecipesFragmentArgs>()
+    private lateinit var menuHost: MenuHost
 
     @Inject
     lateinit var networkListener: NetworkListener
@@ -44,6 +53,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
+        menuHost = requireActivity()
         return binding.root
     }
 
@@ -70,6 +80,23 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                 else recipesViewModel.showNetworkStatus()
             }
         }
+        menuHost.addMenuProvider(object : MenuProvider{
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.menu_recipes, menu)
+                val searchAction = menu.findItem(action_search)
+                val searchView = searchAction.actionView as SearchView
+                searchView.isSubmitButtonEnabled = true
+                searchView.onQueryTextChanged {
+
+                }
+            }
+
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return when (menuItem.itemId) {
+                    else -> false
+                }
+            }
+        })
     }
 
     private fun readDatabase() {
