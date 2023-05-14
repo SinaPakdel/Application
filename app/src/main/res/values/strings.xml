@@ -39,4 +39,6 @@
     <string name="summary">summary</string>
     <string name="dairy_free">Dairy Free</string>
     <string name="cheap">Cheap</string>
+    <string name="grams">Grams</string>
+    <string name="consistency">Consistency</string>
 </resources>

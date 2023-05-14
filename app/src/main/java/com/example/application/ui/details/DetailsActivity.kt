@@ -39,8 +39,8 @@ class DetailsActivity : AppCompatActivity() {
     private fun implementViewPager(binding: ActivityDetailsBinding) {
         with(binding) {
             detailsViewPager.adapter = pagerAdapter
-            TabLayoutMediator(tabLayout, detailsViewPager) { tab, positon ->
-                tab.text = list[positon]
+            TabLayoutMediator(tabLayout, detailsViewPager) { tab, position ->
+                tab.text = list[position]
             }.attach()
             detailsViewPager.currentItem = 0
         }
