@@ -3,7 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="12dp"
+    app:strokeColor="@color/mediumGrey"
+    android:layout_margin="2dp"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -22,8 +26,9 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layout_constraintGuide_percent=".9" />
+
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/imgIngredient"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
@@ -58,10 +63,10 @@
             app:layout_constraintTop_toBottomOf="@+id/tvIngredientName" />
 
         <TextView
-            android:layout_marginStart="8dp"
             android:id="@+id/tvIngredientUnit"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="16dp"
             android:text="@string/grams"
             app:layout_constraintEnd_toEndOf="@id/guideline1"
@@ -75,16 +80,16 @@
             android:layout_marginTop="16dp"
             android:text="@string/consistency"
             app:layout_constraintEnd_toEndOf="@id/guideline1"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintStart_toEndOf="@+id/imgIngredient"
             app:layout_constraintTop_toBottomOf="@+id/tvIngredientAmount" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvOrigin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:text="TextView"
+            android:text="@string/origin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/guideline1"
             app:layout_constraintStart_toStartOf="@+id/guideline"
