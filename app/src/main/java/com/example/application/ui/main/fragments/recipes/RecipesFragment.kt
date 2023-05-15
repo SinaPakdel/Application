@@ -13,6 +13,7 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -54,13 +55,13 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         _binding = FragmentRecipesBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mainViewModel = mainViewModel
-        menuHost = requireActivity()
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
+        menuHost = requireActivity()
 
         recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
             recipesViewModel.backOnline = it
@@ -100,7 +101,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                     else -> false
                 }
             }
-        })
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 
     private fun readDatabase() {

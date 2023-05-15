@@ -113,6 +113,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:text="vegan"
                 app:drawableTint="@color/green"
                 app:drawableTopCompat="@drawable/ic_leaf"
                 app:layout_constraintBottom_toBottomOf="parent"

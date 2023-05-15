@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.DiffUtil.*
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.example.application.R
 import com.example.application.data.models.ExtendedIngredient
 import com.example.application.databinding.ItemIngredientBinding
 import com.example.application.utils.consts.Constants.Companion.BASE_IMAGE_URL
@@ -33,7 +34,8 @@ class IngredientsAdapter : RecyclerView.Adapter<IngredientsAdapter.ViewHolder>()
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         ingredientsList[position].also {
             holder.binding.apply {
-                imgIngredient.load(BASE_IMAGE_URL + it.image)
+                imgIngredient.load(BASE_IMAGE_URL + it.image){crossfade(600)
+                error(R.drawable.ic_error_placeholder)}
                 tvIngredientName.text = it.name.capitalize(Locale.ROOT)
                 tvIngredientAmount.text = it.amount.toString()
                 tvIngredientUnit.text = it.unit
