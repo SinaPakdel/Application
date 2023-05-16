@@ -2,12 +2,14 @@ package com.example.application.ui.details
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.navigation.navArgs
 import com.example.application.R
+import com.example.application.R.id.action_add_to_favorite
 import com.example.application.data.local.database.entities.FavoritesEntity
 import com.example.application.databinding.ActivityDetailsBinding
 import com.example.application.ui.details.adapter.PagerAdapter
@@ -23,6 +25,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailsActivity : AppCompatActivity() {
+    private val TAG="DetailsActivity"
     private var _binding: ActivityDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var pagerAdapter: PagerAdapter
@@ -48,10 +51,6 @@ class DetailsActivity : AppCompatActivity() {
     }
 
 
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_details, menu);return true
-    }
-
     private fun implementViewPager(binding: ActivityDetailsBinding) {
         with(binding) {
             detailsViewPager.adapter = pagerAdapter
@@ -62,17 +61,45 @@ class DetailsActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_details, menu)
+        val actionSaved = menu?.findItem(action_add_to_favorite)
+        Log.e(TAG, "onCreateOptionsMenu: ", )
+        mainViewModel.getFavoriteRecipes()
+
+        checkSavedRecipes(actionSaved!!)
+        ;return true
+    }
+
+    private fun checkSavedRecipes(menuItem: MenuItem) {
+        mainViewModel.readFavoriteRecipes.observe(this) {
+            Log.e("TAG", "checkSavedRecipes: ", )
+            try {
+                it.forEach { favoriteEntity ->
+                    if (favoriteEntity.result.id == args.result.id) {
+                        R.color.yellow.changeMenuItemColor(menuItem)
+                        Log.e("checkSavedRecipes", "checkSavedRecipes:YES ", )
+
+                    }else
+                        Log.e("checkSavedRecipes", "checkSavedRecipes:NO ", )
+                }
+            } catch (e: Exception) {
+                Log.e("checkSavedRecipes: ", e.message.toString())
+            }
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home) {
             finish()
-        } else if (item.itemId == R.id.action_add_to_favorite) {
+        } else if (item.itemId == action_add_to_favorite) {
             saveButtonClicked(item)
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun saveButtonClicked(item: MenuItem) {
-        mainViewModel.insertFavoriteRecipes(FavoritesEntity(args.result, 0))
+        mainViewModel.insertFavoriteRecipes(FavoritesEntity(0,args.result))
         R.color.yellow.changeMenuItemColor(item)
         makeSnack(getString(R.string.recipe_saved), binding.root)
         Snackbar.make(binding.root, "make", Snackbar.LENGTH_LONG).setAction("OKAY") {}.show()

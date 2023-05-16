@@ -6,4 +6,4 @@ import com.example.application.data.models.FoodResult
 import com.example.application.utils.consts.Constants.Companion.FAVORITE_RECIPES_TABLE
 
 @Entity(tableName = FAVORITE_RECIPES_TABLE)
-class FavoritesEntity(var result: FoodResult, @PrimaryKey(autoGenerate = true) var id: Int)
+class FavoritesEntity(@PrimaryKey(autoGenerate = true) var id: Int = 0, var result: FoodResult)
