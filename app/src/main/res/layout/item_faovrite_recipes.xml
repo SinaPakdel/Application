@@ -39,6 +39,7 @@
                 android:id="@+id/img_favorite_recipes"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                loadImageFromUrl="@{favoriteEntity.result.image}"
                 android:layout_marginEnd="12dp"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,6 +52,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/courgette"
+                android:text="@{favoriteEntity.result.title}"
                 android:paddingBottom="4dp"
                 android:textSize="22sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -59,6 +61,7 @@
 
             <TextView
                 android:id="@+id/tv_favorite_description"
+            android:text="@{favoriteEntity.result.summary}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline1"
@@ -72,6 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                setNumberOfLikes="@{favoriteEntity.result.aggregateLikes}"
                 android:gravity="center"
                 android:paddingEnd="12dp"
                 android:textColor="@color/red"
@@ -84,6 +88,7 @@
                 tools:text="@string/_100" />
 
             <TextView
+                setNumberOfMinutes="@{favoriteEntity.result.readyInMinutes}"
                 android:id="@+id/tv_favorite_clock"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
@@ -100,6 +105,7 @@
                 tools:text="@string/_100" />
 
             <TextView
+                applyVeganColor="@{favoriteEntity.result.vegan}"
                 android:id="@+id/tv_favorite_vegan"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
