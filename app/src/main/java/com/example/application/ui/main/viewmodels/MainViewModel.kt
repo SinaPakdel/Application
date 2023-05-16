@@ -8,7 +8,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.application.data.local.database.RecipeEntity
+import com.example.application.data.local.database.entities.RecipeEntity
 import com.example.application.data.models.FoodRecipes
 import com.example.application.data.repository.Repository
 import com.example.application.utils.safeapi.NetworkResult
