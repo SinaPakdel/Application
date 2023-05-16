@@ -20,7 +20,7 @@ class FavoriteRecipesFragment : Fragment(R.layout.fragment_favorite_recipes) {
     private val TAG = "FavoriteRecipesFragment"
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
-    private val favoriteRecipeAdapter by lazy { FavoriteRecipeAdapter() }
+    private val favoriteRecipeAdapter by lazy { FavoriteRecipeAdapter(requireActivity()) }
     private val fMainViewModel: MainViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,7 +31,7 @@ class FavoriteRecipesFragment : Fragment(R.layout.fragment_favorite_recipes) {
         binding.lifecycleOwner = this
         binding.mainViewModel = fMainViewModel
         binding.favoriteAdapter = favoriteRecipeAdapter
-
+        
 
         with(binding) {
             rvFavoriteRecipe.apply {
