@@ -10,6 +10,7 @@
     </data>
 
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardViewFavorite"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="4dp"
@@ -18,6 +19,7 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/favoriteRecipesItemLayout"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

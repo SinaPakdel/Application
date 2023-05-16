@@ -26,4 +26,8 @@
     <color name="statusBarColor">#370098</color>
     <color name="contextualStatusBarColor">@color/black</color>
     <color name="contextualActionBarColor">@color/black</color>
+
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="strokeColor">@color/lightGrey</color>
+    <color name="cardBackgroundColorLight">#106200EA</color>
 </resources>
