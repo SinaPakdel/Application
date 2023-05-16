@@ -17,23 +17,20 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FavoriteRecipesFragment : Fragment(R.layout.fragment_favorite_recipes) {
-    private val TAG="FavoriteRecipesFragment"
+    private val TAG = "FavoriteRecipesFragment"
     private var _binding: FragmentFavoriteRecipesBinding? = null
     private val binding get() = _binding!!
     private val favoriteRecipeAdapter by lazy { FavoriteRecipeAdapter() }
-    private val mainViewModel: MainViewModel by viewModels()
+    private val fMainViewModel: MainViewModel by viewModels()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         _binding = FragmentFavoriteRecipesBinding.inflate(inflater, container, false)
-
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = this
+        binding.mainViewModel = fMainViewModel
+        binding.favoriteAdapter = favoriteRecipeAdapter
 
 
         with(binding) {
@@ -43,10 +40,20 @@ class FavoriteRecipesFragment : Fragment(R.layout.fragment_favorite_recipes) {
             }
         }
 
-        mainViewModel.getFavoriteRecipes()
-        mainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner){
-            Log.e(TAG, "onViewCreated: ${it.size}", )
+        fMainViewModel.getFavoriteRecipes()
+        fMainViewModel.readFavoriteRecipes.observe(viewLifecycleOwner) {
+            Log.e(TAG, "onViewCreated: ${it.size}")
             favoriteRecipeAdapter.setData(it)
         }
+
+
+        return binding.root
+    }
+
+
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding=null
     }
 }

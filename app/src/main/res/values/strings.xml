@@ -45,4 +45,5 @@
     <string name="saveToFavorite">savetoFavorite</string>
     <string name="recipe_saved">Recipe Saved</string>
     <string name="no_favorite_recipes_saved">No Favorite Recipes Saved.</string>
+    <string name="empty_list">Empty List</string>
 </resources>
