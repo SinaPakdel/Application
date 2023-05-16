@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(
     val readRecipes: LiveData<List<RecipeEntity>> get() = _readRecipes
 
     fun getRecipe() = viewModelScope.launch {
-        repository.local.readDatabase().collect {
+        repository.local.readRecipes().collect {
             _readRecipes.postValue(it)
         }
     }
