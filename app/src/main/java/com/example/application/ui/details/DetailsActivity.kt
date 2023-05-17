@@ -40,7 +40,7 @@ class DetailsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         _binding = ActivityDetailsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.materialToolbar)
+//        setSupportActionBar(binding.materialToolbar)
 
         val resultBundle = Bundle()
         resultBundle.putParcelable(RECIPE_BUNDLE_KEY, args.result)
@@ -48,7 +48,7 @@ class DetailsActivity : AppCompatActivity() {
         pagerAdapter = PagerAdapter(resultBundle, supportFragmentManager, lifecycle)
         implementViewPager(binding)
 
-        binding.materialToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
+//        binding.materialToolbar.setTitleTextColor(ContextCompat.getColor(this, R.color.white))
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
     }

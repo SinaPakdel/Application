@@ -23,17 +23,17 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavController()
-        setupToolbar()
+//        setupToolbar()
         setupBtmNavView()
 
     }
 
     private fun setupToolbar() {
-        setSupportActionBar(binding.customToolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-        appBarConfig =
-            AppBarConfiguration(setOf(R.id.recipesFragment, R.id.favoriteRecipesFragment, R.id.foodJokeFragment))
-        setupActionBarWithNavController(navController, appBarConfig)
+//        setSupportActionBar(binding.customToolbar)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+//        appBarConfig =
+//            AppBarConfiguration(setOf(R.id.recipesFragment, R.id.favoriteRecipesFragment, R.id.foodJokeFragment))
+//        setupActionBarWithNavController(navController, appBarConfig)
     }
 
 
