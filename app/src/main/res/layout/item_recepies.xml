@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="result"
             type="com.example.application.data.models.FoodResult" />
@@ -14,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="4dp"
+        app:cardCornerRadius="8dp"
         app:strokeColor="@color/lightGrey"
         app:strokeWidth="1dp">
 
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent=".45" />
+                app:layout_constraintGuide_percent=".5" />
 
             <ImageView
                 android:id="@+id/img_recipes"
@@ -62,6 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
+                android:layout_marginEnd="4dp"
                 parseHtml="@{result.summary}"
                 android:id="@+id/tv_description"
                 android:layout_width="0dp"
@@ -79,6 +80,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginTop="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="@color/red"
                 app:drawableTint="@color/red"
@@ -96,6 +98,7 @@
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:layout_marginTop="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="@color/yellow"
                 app:drawableTint="@color/yellow"
@@ -111,6 +114,7 @@
                 applyVeganColor="@{result.vegan}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="vegan"
