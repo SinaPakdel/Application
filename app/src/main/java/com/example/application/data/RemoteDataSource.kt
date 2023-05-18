@@ -1,5 +1,6 @@
 package com.example.application.data
 
+import com.example.application.data.models.FoodJoke
 import com.example.application.data.models.FoodRecipes
 import com.example.application.data.remote.FoodService
 import retrofit2.Response
@@ -14,4 +15,6 @@ class RemoteDataSource @Inject constructor(
 
     suspend fun searchRecipes(searchQueries: Map<String, String>): Response<FoodRecipes> =
         foodService.searchRecipes(searchQueries)
+
+    suspend fun getFoodJoke(): Response<FoodJoke> = foodService.getFoodJoke()
 }

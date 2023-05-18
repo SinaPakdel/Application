@@ -1,5 +1,6 @@
 package com.example.application.data.remote
 
+import com.example.application.data.models.FoodJoke
 import com.example.application.data.models.FoodRecipes
 import retrofit2.Response
 import retrofit2.http.GET
@@ -16,4 +17,8 @@ interface FoodService {
     suspend fun searchRecipes(
         @QueryMap searchQuery: Map<String, String>
     ): Response<FoodRecipes>
+
+    @GET("/food/joke/random")
+    suspend fun getFoodJoke(
+    ): Response<FoodJoke>
 }

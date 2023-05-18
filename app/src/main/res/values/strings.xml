@@ -51,4 +51,6 @@
     <string name="this_is_a_joke_food">This is a Joke Food</string>
     <string name="error_food_joke">Error Food Joke</string>
     <string name="no_data">No Data</string>
+    <string name="recipes_not_found">Recipes Not Found.</string>
+    <string name="joke_not_found">Joke Not Found!</string>
 </resources>
