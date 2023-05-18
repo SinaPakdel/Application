@@ -47,4 +47,8 @@
     <string name="no_favorite_recipes_saved">No Favorite Recipes Saved.</string>
     <string name="empty_list">Empty List</string>
     <string name="delete_all">Delete All</string>
+    <string name="_2020_20_20">2020/20/20</string>
+    <string name="this_is_a_joke_food">This is a Joke Food</string>
+    <string name="error_food_joke">Error Food Joke</string>
+    <string name="no_data">No Data</string>
 </resources>
