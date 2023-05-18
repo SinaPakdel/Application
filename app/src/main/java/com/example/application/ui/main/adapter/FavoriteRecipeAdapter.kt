@@ -176,5 +176,9 @@ class FavoriteRecipeAdapter(
         favoriteFoodResults = favoritesEntityList
         calculateDiff.dispatchUpdatesTo(this)
     }
-
+    fun clearContextualActionMode() {
+        if (this::actionMode.isInitialized) {
+            actionMode.finish()
+        }
+    }
 }
