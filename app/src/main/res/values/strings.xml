@@ -46,4 +46,5 @@
     <string name="recipe_saved">Recipe Saved</string>
     <string name="no_favorite_recipes_saved">No Favorite Recipes Saved.</string>
     <string name="empty_list">Empty List</string>
+    <string name="delete_all">Delete All</string>
 </resources>
