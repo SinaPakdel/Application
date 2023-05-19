@@ -3,7 +3,9 @@ package com.example.application.di.modules
 import android.app.Application
 import androidx.room.Room
 import com.example.application.data.LocalDataSource
-import com.example.application.data.local.database.RecipesDao
+import com.example.application.data.local.database.dao.FavoriteRecipeDao
+import com.example.application.data.local.database.dao.FoodJokeDao
+import com.example.application.data.local.database.dao.RecipesDao
 import com.example.application.data.local.database.RecipesDatabase
 import com.example.application.di.qualifier.DatabaseName
 import com.example.application.utils.consts.Constants.Companion.DATABASE_NAME
@@ -34,10 +36,19 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideMovieDao(movieDatabase: RecipesDatabase): RecipesDao = movieDatabase.recipeDao()
+    fun provideMovieDao(dataBase: RecipesDatabase): RecipesDao = dataBase.recipeDao()
+
+    @Provides
+    @Singleton
+    fun provideFavoriteRecipeDao(dataBase: RecipesDatabase): FavoriteRecipeDao = dataBase.favoriteRecipeDao()
+
+    @Provides
+    @Singleton
+    fun provideFoodJokeDao(dataBase: RecipesDatabase): FoodJokeDao = dataBase.foodJokeDao()
 
 
     @Provides
     @Singleton
-    fun provideLocalDataSource(movieDao: RecipesDao): LocalDataSource = LocalDataSource(movieDao)
+    fun provideLocalDataSource(recipesDao: RecipesDao, favoriteRecipeDao: FavoriteRecipeDao, foodJokeDao: FoodJokeDao): LocalDataSource =
+        LocalDataSource(recipesDao, favoriteRecipeDao, foodJokeDao)
 }

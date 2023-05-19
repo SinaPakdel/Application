@@ -18,7 +18,7 @@ interface FoodService {
         @QueryMap searchQuery: Map<String, String>
     ): Response<FoodRecipes>
 
-    @GET("/food/joke/random")
+    @GET("/food/jokes/random")
     suspend fun getFoodJoke(
     ): Response<FoodJoke>
 }

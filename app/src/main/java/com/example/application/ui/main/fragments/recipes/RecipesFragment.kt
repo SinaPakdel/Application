@@ -90,7 +90,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                 searchView.isSubmitButtonEnabled = true
                 searchView.onQueryTextSubmit {
                     if (it.isNotEmpty()) {
-                        Log.e("TAG", "onCreateMenu: $it", )
+                        Log.e("TAG", "onCreateMenu: $it")
                         searchApiData(it)
                     }
                 }
@@ -105,11 +105,13 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
     }
 
     private fun readDatabase() {
-        mainViewModel.getRecipe()
-        mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) {
-            if (it.toMutableList().isNotEmpty() && !args.backFromBTS) {
-                recipesAdapter.setData(it[0].foodRecipes);hideShimmerEffect()
-            } else requestApiData()
+        lifecycleScope.launch {
+            mainViewModel.getRecipe()
+            mainViewModel.readRecipes.observeOnce(viewLifecycleOwner) {
+                if (it.toMutableList().isNotEmpty() && !args.backFromBTS) {
+                    recipesAdapter.setData(it[0].foodRecipes);hideShimmerEffect()
+                } else requestApiData()
+            }
         }
     }
 
@@ -147,7 +149,7 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
                 }
 
                 is NetworkResult.Success -> {
-                    Log.e("TAG", "searchApiData: ${response.data}", )
+                    Log.e("TAG", "searchApiData: ${response.data}")
                     hideShimmerEffect();response.data?.let { recipesAdapter.setData(it) }
                 }
             }
@@ -180,11 +182,6 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
 
     override fun onDestroy() {
         super.onDestroy()
-        _binding = null
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
         _binding = null
     }
 }
