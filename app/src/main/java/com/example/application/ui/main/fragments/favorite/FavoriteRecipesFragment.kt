@@ -12,11 +12,9 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.application.R
 import com.example.application.databinding.FragmentFavoriteRecipesBinding
-import com.example.application.databinding.FragmentRecipesBinding
 import com.example.application.ui.main.adapter.FavoriteRecipeAdapter
 import com.example.application.ui.main.viewmodels.MainViewModel
 import com.example.application.utils.view.makeSnack
@@ -69,7 +67,7 @@ class FavoriteRecipesFragment : Fragment(R.layout.fragment_favorite_recipes) {
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 return when (menuItem.itemId) {
-                    R.id.actionDeleteAll -> {
+                    R.id.action_delete_all -> {
                         fMainViewModel.deleteAllFavoriteRecipes()
                         makeSnack("Items Deleted",binding.root)
                         ;true
