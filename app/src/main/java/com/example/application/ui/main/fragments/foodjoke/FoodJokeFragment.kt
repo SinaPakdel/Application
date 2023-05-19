@@ -59,7 +59,6 @@ class FoodJokeFragment : Fragment(R.layout.fragment_food_joke) {
                     binding.prgBarFoodJoke.isVisible = false
                     binding.tvTitleFoodJoke.text = response.data?.text
                 }
-
             }
         }
 

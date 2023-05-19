@@ -20,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navHost: NavHostFragment
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_Application)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupNavController()
