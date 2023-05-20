@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="result"
             type="com.example.application.data.models.FoodResult" />
@@ -18,9 +19,9 @@
         app:strokeWidth="1dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/recipesItemLayout"
             onRecipesItemClicked="@{result}"
             android:layout_width="match_parent"
-            android:id="@+id/recipesItemLayout"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.Guideline
@@ -39,6 +40,7 @@
 
             <ImageView
                 android:id="@+id/img_recipes"
+                loadImageFromUrl="@{result.image}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginEnd="12dp"
@@ -46,8 +48,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                loadImageFromUrl="@{result.image}" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_title"
@@ -62,11 +63,11 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:layout_marginEnd="4dp"
-                parseHtml="@{result.summary}"
                 android:id="@+id/tv_description"
+                parseHtml="@{result.summary}"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginEnd="4dp"
                 app:layout_constraintBottom_toTopOf="@+id/guideline1"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/guideline2"
@@ -75,13 +76,13 @@
 
             <TextView
                 android:id="@+id/tv_heart"
-                setNumberOfLikes="@{result.aggregateLikes}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginTop="12dp"
                 android:paddingEnd="12dp"
+                android:text="@{String.valueOf(result.aggregateLikes)}"
                 android:textColor="@color/red"
                 app:drawableTint="@color/red"
                 app:drawableTopCompat="@drawable/ic_heart"
@@ -96,9 +97,9 @@
                 setNumberOfMinutes="@{result.readyInMinutes}"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
+                android:layout_marginTop="12dp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:layout_marginTop="12dp"
                 android:paddingEnd="12dp"
                 android:textColor="@color/yellow"
                 app:drawableTint="@color/yellow"
