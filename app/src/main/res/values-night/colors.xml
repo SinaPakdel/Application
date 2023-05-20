@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="purple">#673AB7</color>
+    <color name="lightGrey">#FFC5C5C5</color>
+    <color name="mediumGrey">#FFB1B1B1</color>
+    <color name="darkGrey">#6A6A6A</color>
+    <color name="darker">#FFFFFFFF</color>
+    <color name="yellow">#FF9800</color>
+    <color name="red">#E91E63</color>
+    <color name="green">#4CAF50</color>
+
+    <color name="bgCheckedChipColor">#206200EA</color>
+    <color name="bgChipColor">@color/lightGrey</color>
+    <color name="textCheckedChipColor">@color/purple</color>
+    <color name="textChipColor">@color/darkGrey</color>
+    <color name="actionBarBackgroundColor">#370098</color>
+
+    //  custom card view style
+    <color name="statusBarColor">#370098</color>
+    <color name="contextualStatusBarColor">@color/black</color>
+    <color name="contextualActionBarColor">@color/black</color>
+
+    <color name="cardBackgroundColor">@color/white</color>
+    <color name="strokeColor">@color/lightGrey</color>
+    <color name="cardBackgroundColorLight">#106200EA</color>
+</resources>
