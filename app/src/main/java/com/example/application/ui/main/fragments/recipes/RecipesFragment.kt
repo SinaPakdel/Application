@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -66,12 +67,13 @@ class RecipesFragment : Fragment(R.layout.fragment_recipes) {
         recipesViewModel.readBackOnline.observe(viewLifecycleOwner) {
             recipesViewModel.backOnline = it
         }
-
-        lifecycleScope.launch {
-            networkListener.checkNetworkAvailability().collectLatest { status ->
-                recipesViewModel.networkStatus = status
-                recipesViewModel.showNetworkStatus()
-                readDatabase()
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                networkListener.checkNetworkAvailability().collectLatest { status ->
+                    recipesViewModel.networkStatus = status
+                    recipesViewModel.showNetworkStatus()
+                    readDatabase()
+                }
             }
         }
 
