@@ -1,10 +1,10 @@
 package com.example.application.ui.main.adapter
 
 import android.util.Log
+import android.view.ActionMode
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
-import android.view.ActionMode
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.FragmentActivity

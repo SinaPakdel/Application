@@ -2,10 +2,9 @@ package com.example.application.data.models
 
 
 import android.os.Parcelable
-import com.example.application.data.models.ExtendedIngredient
 import com.google.gson.annotations.SerializedName
-import kotlinx.android.parcel.Parcelize
-import kotlinx.android.parcel.RawValue
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
 @Suppress("DEPRECATED_ANNOTATION")
 @Parcelize
